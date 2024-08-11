@@ -1,4 +1,4 @@
-import fitz
+import pymupdf
 import time
 
 while True:
@@ -13,7 +13,7 @@ while True:
         time.sleep(3)
         continue
 
-pdf_document = fitz.open("marken.pdf")
+pdf_document = pymupdf.open("marken.pdf")
 
 page = pdf_document[0]
 
@@ -23,10 +23,10 @@ for block in blocks:
     for pattern in block:
         if "17.07." in str(pattern):
             x0, y0, x1, y1 = block[:4]
-            rect = fitz.Rect(x0, y0, x1, y1)
+            rect = pymupdf.Rect(x0, y0, x1, y1)
             page.draw_rect(rect, color=(1, 1, 1), fill=(1, 1, 1))
             page.insert_text((x0, y0), f"\n{date_new}", fontsize=9)
-            pdf_document.save(f"marken_{date_new}.pdf")
+            pdf_document.save(f"result/marken_{date_new}.pdf")
 
 print()
 print("Hotovo! Datujem je zmeneny.")
