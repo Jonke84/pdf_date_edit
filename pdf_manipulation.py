@@ -13,7 +13,7 @@ while True:
         time.sleep(3)
         continue
 
-pdf_document = pymupdf.open("marken.pdf")
+pdf_document = pymupdf.open("original.pdf")
 
 page = pdf_document[0]
 
@@ -31,5 +31,5 @@ for block in blocks:
 print()
 print("Hotovo! Datujem je zmeneny.")
 print()
-print(f"Novy nazov suboru je => marken_{date_new}.pdf.")
+print(f"Novy nazov suboru je v priecinku result => marken_{date_new}.pdf.")
 print()
