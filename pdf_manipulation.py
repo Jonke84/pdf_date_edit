@@ -1,5 +1,10 @@
 import pymupdf
 import time
+import logging
+
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 while True:
     print()
@@ -13,8 +18,10 @@ while True:
         time.sleep(3)
         continue
 
-pdf_document = pymupdf.open("original.pdf")
-
+pdf_document = pymupdf.open(
+    r"C:\Users\XZCR2883\PYTHON_VS_CODE\pdf_date_edit\original.pdf"
+)
+logging.info("This is an info message")
 page = pdf_document[0]
 
 blocks = page.get_text("blocks")
@@ -26,7 +33,9 @@ for block in blocks:
             rect = pymupdf.Rect(x0, y0, x1, y1)
             page.draw_rect(rect, color=(1, 1, 1), fill=(1, 1, 1))
             page.insert_text((x0, y0), f"\n{date_new}", fontsize=9)
-            pdf_document.save(f"result/marken_{date_new}.pdf")
+            pdf_document.save(
+                r"C:\Users\XZCR2883\PYTHON_VS_CODE\pdf_date_edit\result\marken.pdf"
+            )
 
 print()
 print("Hotovo! Datujem je zmeneny.")
